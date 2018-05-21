@@ -88,5 +88,8 @@ Register your custom providers store.
   .AddCustomTokenExchangeProviderStore<MyCustomProviderStore>();
 ```
 
+## License
+Please see [LICENSE](/LICENSE) for licensing information.
+
 
 
