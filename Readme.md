@@ -42,7 +42,7 @@ POST connect/token
      
      client_id = [your_client_id]
      client_secret = [your_client_secret]
-     scopes = [your_scopes]
+     scope = [your_scopes]
      grant_type = external
      provider = facebook 
      external_token  = [facebook_access_token]
@@ -54,7 +54,7 @@ POST connect/token
      
      client_id = [your_client_id]
      client_secret = [your_client_secret]
-     scopes = [your_scopes]
+     scope = [your_scopes]
      grant_type = external
      provider = facebook 
      email = myemail@abc.com
