@@ -33,7 +33,7 @@ namespace IdentityServer.External.TokenExchange.Providers
 
             var request = new Dictionary<string, string>
             {
-                {"fields", "id,email,name,gender,birthday"},
+                {"fields", provider.Fields},
                 {"access_token", accessToken}
             };
             var result = await _client.GetAsync(provider.UserInfoEndpoint + QueryBuilder.GetQuery(request, TokenExchangeProviders.Facebook));
