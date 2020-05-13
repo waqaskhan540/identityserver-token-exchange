@@ -1,19 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Company>Muhammad Waqas</Company>
-    <Authors>Muhammad Waqas</Authors>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Company>Muhammad Waqas</Company>
+        <Authors>Muhammad Waqas</Authors>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="IdentityServer4" Version="2.2.0" />
-    
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="IdentityServer4" Version="3.1.1" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Microsoft.Extensions.DependencyInjection">
-      <HintPath>C:\Users\MWaqas\.nuget\packages\microsoft.extensions.dependencyinjection\2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Microsoft.Extensions.DependencyInjection" />
+    </ItemGroup>
 </Project>
