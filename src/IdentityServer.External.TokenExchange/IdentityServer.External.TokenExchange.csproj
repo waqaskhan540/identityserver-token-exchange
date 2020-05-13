@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Company>Muhammad Waqas</Company>
+        <Authors>Muhammad Waqas</Authors>
     </PropertyGroup>
 
     <ItemGroup>
