@@ -71,7 +71,7 @@ namespace IdentityServer.External.TokenExchange
                 var externalId = userInfo.Value<string>("id");
                 if (!string.IsNullOrWhiteSpace(externalId))
                 {
-                    var existingUserId = await _externalUserStore.FindByProviderAsync(providerName,externalId);
+                    var existingUserId = await _externalUserStore.FindByProviderAsync(providerName, externalId);
                     if (!string.IsNullOrWhiteSpace(existingUserId))
                     {
                         var claims = await _externalUserStore.GetUserClaimsByExternalIdAsync(externalId);
