@@ -4,7 +4,16 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <Company>Muhammad Waqas</Company>
         <Authors>Muhammad Waqas</Authors>
-    </PropertyGroup>
+    
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
     <ItemGroup>
         <PackageReference Include="IdentityServer4" Version="3.1.1" />
