@@ -14,7 +14,7 @@ namespace IdentityServer.External.TokenExchange.Config
                 new ExternalTokenExchangeProvider
                 {
                     Id = 1,
-                    Fields = "id,email,name,gender,birthday",
+                    Fields = "id,email,first_name,last_name,gender,birthday",
                     Name = "Facebook",
                     UserInfoEndpoint = "https://graph.facebook.com/v2.8/me"
                 },

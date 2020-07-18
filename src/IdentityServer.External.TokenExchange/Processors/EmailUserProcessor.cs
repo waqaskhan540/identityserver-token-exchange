@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IdentityServer.External.TokenExchange.Config;
 using IdentityServer.External.TokenExchange.Interfaces;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
@@ -18,7 +19,7 @@ namespace IdentityServer.External.TokenExchange.Processors
         {
             _externalUserStore = externalUserStore;
         }
-        public async Task<GrantValidationResult> ProcessAsync(JObject userInfo,string email, string provider)
+        public async Task<GrantValidationResult> ProcessAsync(JObject userInfo, string email, string provider)
         {
             var userEmail = email;
             var userExternalId = userInfo.Value<string>("id");
@@ -34,7 +35,17 @@ namespace IdentityServer.External.TokenExchange.Processors
 
             }
 
-            var newUserId = await _externalUserStore.CreateExternalUserAsync(userExternalId, userEmail, provider);
+            string firstName = null;
+            string lastName = null;
+
+            //select firstname and lastname if possible
+            if(provider == TokenExchangeProviders.Facebook)
+            {
+                firstName = userInfo.Value<string>("first_name");
+                lastName = userInfo.Value<string>("last_name");
+            }
+
+            var newUserId = await _externalUserStore.CreateExternalUserAsync(userExternalId, userEmail, provider, firstName, lastName);
             if (!string.IsNullOrWhiteSpace(newUserId))
             {
                 var claims = await _externalUserStore.GetUserClaimsByExternalIdAsync(userExternalId);
