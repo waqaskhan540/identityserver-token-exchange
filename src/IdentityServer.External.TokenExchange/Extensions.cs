@@ -1,17 +1,16 @@
-﻿using System;
+﻿using IdentityServer.External.TokenExchange.Interfaces;
+using IdentityServer.External.TokenExchange.Processors;
+using IdentityServer.External.TokenExchange.Providers;
+using IdentityServer.External.TokenExchange.Services;
+using IdentityServer.External.TokenExchange.Stores;
+using IdentityServer4.Services;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using IdentityServer.External.TokenExchange;
-using IdentityServer.External.TokenExchange.Stores;
-using IdentityServer.External.TokenExchange.Config;
-using IdentityServer.External.TokenExchange.Interfaces;
-using IdentityServer.External.TokenExchange.Providers;
-using IdentityServer.External.TokenExchange.Processors;
-using IdentityServer.External.TokenExchange.Services;
-using IdentityServer4.Services;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace IdentityServer.External.TokenExchange
 {
     public static class Extensions
     {
@@ -26,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IIdentityServerBuilder AddDefaultTokenExchangeProviderStore(this IIdentityServerBuilder services)
         {
             services.Services.AddScoped<ITokenExchangeProviderStore>(s =>
-                new DefaultTokenExchangeProviderStore(Providers.GetProviders()));
+                new DefaultTokenExchangeProviderStore(Config.Providers.GetProviders()));
             return services;
         }
 
