@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using IdentityServer.External.TokenExchange.Interfaces;
 using IdentityServer4.Extensions;
 using IdentityServer4.Models;
@@ -27,7 +23,6 @@ namespace IdentityServer.External.TokenExchange.Services
                 var claims = await _externalUserStore.GetUserClaimsByIdAsync(subjectid);
                 context.AddRequestedClaims(claims);
             }
-
         }
 
         public async Task IsActiveAsync(IsActiveContext context)

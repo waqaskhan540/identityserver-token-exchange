@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IdentityServer.External.TokenExchange.Config
+﻿namespace IdentityServer.External.TokenExchange.Config
 {
     public static class TokenExchangeProviders
     {

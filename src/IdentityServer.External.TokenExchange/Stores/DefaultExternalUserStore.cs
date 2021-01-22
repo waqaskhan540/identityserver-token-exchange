@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using IdentityModel;
 using IdentityServer.External.TokenExchange.Interfaces;
 using IdentityServer.External.TokenExchange.Models;
-using IdentityServer4.Test;
 
 namespace IdentityServer.External.TokenExchange.Stores
 {
@@ -16,13 +14,12 @@ namespace IdentityServer.External.TokenExchange.Stores
         private readonly List<ExternalTestUser> _users;
         public DefaultExternalUserStore()
         {
-                _users = new List<ExternalTestUser>();
+            _users = new List<ExternalTestUser>();
         }
         public Task<bool> FindUserByEmailAsync(string email)
         {
             var user = _users.FirstOrDefault(x => x.Username == email);
             return Task.FromResult(user == null);
-
         }
 
         public Task<bool> FindUserByExternalIdAsync(string externalId)
@@ -73,7 +70,7 @@ namespace IdentityServer.External.TokenExchange.Stores
             var user = _users.FirstOrDefault(x => x.SubjectId == subject);
             if (user == null)
             {
-                return null;
+                return Task.FromResult<string>(null);
             }
 
             return Task.FromResult(user.SubjectId);

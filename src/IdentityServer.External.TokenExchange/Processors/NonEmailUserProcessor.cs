@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using IdentityServer.External.TokenExchange.Interfaces;
 using IdentityServer4.Models;
@@ -54,7 +53,6 @@ namespace IdentityServer.External.TokenExchange.Processors
             }
 
             return new GrantValidationResult(TokenRequestErrors.InvalidRequest, "could not create user, please try again.");
-
         }
     }
 }

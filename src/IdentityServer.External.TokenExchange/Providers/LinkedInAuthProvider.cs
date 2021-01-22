@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityServer.External.TokenExchange.Config;
+using IdentityServer.External.TokenExchange.Helpers;
 using IdentityServer.External.TokenExchange.Interfaces;
 using Newtonsoft.Json.Linq;
 
@@ -23,10 +20,7 @@ namespace IdentityServer.External.TokenExchange.Providers
         {
 
             var provider = await _tokenExchangeProviderStore.GetProviderByNameAsync(TokenExchangeProviders.LinkedIn);
-            if (provider == null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
+            ExternalTokenExchangeProviderHelper.CheckNotNull(provider);
 
             var urlParams = $"oauth2_access_token={accessToken}&format=json";
 

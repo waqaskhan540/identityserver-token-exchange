@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using System.Threading.Tasks;
 using IdentityServer.External.TokenExchange.Interfaces;
 using IdentityServer4.Models;
@@ -18,7 +15,7 @@ namespace IdentityServer.External.TokenExchange.Processors
         {
             _externalUserStore = externalUserStore;
         }
-        public async Task<GrantValidationResult> ProcessAsync(JObject userInfo,string email, string provider)
+        public async Task<GrantValidationResult> ProcessAsync(JObject userInfo, string email, string provider)
         {
             var userEmail = email;
             var userExternalId = userInfo.Value<string>("id");
@@ -31,7 +28,6 @@ namespace IdentityServer.External.TokenExchange.Processors
             if (await _externalUserStore.FindUserByEmailAsync(userEmail))
             {
                 return new GrantValidationResult(TokenRequestErrors.InvalidRequest, "User with specified email already exists");
-
             }
 
             var newUserId = await _externalUserStore.CreateExternalUserAsync(userExternalId, userEmail, provider);

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using IdentityServer.External.TokenExchange.Models;
 
 namespace IdentityServer.External.TokenExchange.Config
@@ -30,7 +28,7 @@ namespace IdentityServer.External.TokenExchange.Config
                     Name = "Twitter",
                     UserInfoEndpoint = "https://api.twitter.com/1.1/account/verify_credentials.json"
                 }
-               
+
             };
         }
     }
