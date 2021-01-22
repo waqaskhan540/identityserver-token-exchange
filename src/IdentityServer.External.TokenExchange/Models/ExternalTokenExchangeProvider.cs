@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IdentityServer.External.TokenExchange.Models
+﻿namespace IdentityServer.External.TokenExchange.Models
 {
     public class ExternalTokenExchangeProvider
     {

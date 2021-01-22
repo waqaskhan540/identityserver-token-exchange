@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using IdentityServer.External.TokenExchange.Config;
 using IdentityServer.External.TokenExchange.Interfaces;
-using IdentityServer.External.TokenExchange.Stores;
-using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using IdentityServer.External.TokenExchange.Helpers;
 
@@ -20,16 +18,16 @@ namespace IdentityServer.External.TokenExchange
 
         public ExternalAuthenticationGrant(
             ITokenExchangeProviderStore providerStore,
-            Func<string,IExternalTokenProvider> tokenServiceAccessor,
+            Func<string, IExternalTokenProvider> tokenServiceAccessor,
             IExternalUserStore externalUserStore,
             IEmailUserProcessor emailUserProcessor,
             INonEmailUserProcessor nonEmailUserProcessor
             )
         {
-            _providerStore         = providerStore ?? throw new ArgumentNullException(nameof(providerStore));
-            _tokenServiceAccessor  = tokenServiceAccessor ?? throw new ArgumentNullException(nameof(tokenServiceAccessor));
-            _externalUserStore     = externalUserStore ?? throw new ArgumentNullException(nameof(externalUserStore));
-            _emailUserProcessor    = emailUserProcessor ?? throw new ArgumentNullException(nameof(emailUserProcessor));
+            _providerStore = providerStore ?? throw new ArgumentNullException(nameof(providerStore));
+            _tokenServiceAccessor = tokenServiceAccessor ?? throw new ArgumentNullException(nameof(tokenServiceAccessor));
+            _externalUserStore = externalUserStore ?? throw new ArgumentNullException(nameof(externalUserStore));
+            _emailUserProcessor = emailUserProcessor ?? throw new ArgumentNullException(nameof(emailUserProcessor));
             _nonEmailUserProcessor = nonEmailUserProcessor ?? throw new ArgumentNullException(nameof(nonEmailUserProcessor));
         }
         public async Task ValidateAsync(ExtensionGrantValidationContext context)
@@ -71,11 +69,11 @@ namespace IdentityServer.External.TokenExchange
                 var externalId = userInfo.Value<string>("id");
                 if (!string.IsNullOrWhiteSpace(externalId))
                 {
-                    var existingUserId = await _externalUserStore.FindByProviderAsync(providerName,externalId);
+                    var existingUserId = await _externalUserStore.FindByProviderAsync(providerName, externalId);
                     if (!string.IsNullOrWhiteSpace(existingUserId))
                     {
                         var claims = await _externalUserStore.GetUserClaimsByExternalIdAsync(externalId);
-                        context.Result = GrantValidationResultHelpers.Success(existingUserId,providerName,claims);
+                        context.Result = GrantValidationResultHelpers.Success(existingUserId, providerName, claims);
                     }
                 }
 
@@ -92,15 +90,7 @@ namespace IdentityServer.External.TokenExchange
 
                 context.Result = GrantValidationResultHelpers.Error(e.Message);
             }
-
         }
-
         public string GrantType => TokenExchangeProviders.GrantName;
-
-      
-
-        
     }
-
-
 }
