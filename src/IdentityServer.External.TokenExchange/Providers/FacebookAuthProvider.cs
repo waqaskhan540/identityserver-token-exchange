@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using IdentityServer.External.TokenExchange.Config;
 using IdentityServer.External.TokenExchange.Helpers;
 using IdentityServer.External.TokenExchange.Interfaces;
-using IdentityServer.External.TokenExchange.Models;
 using Newtonsoft.Json.Linq;
 
 namespace IdentityServer.External.TokenExchange.Providers
 {
-   public class FacebookAuthProvider : IExternalTokenProvider
+    public class FacebookAuthProvider : IExternalTokenProvider
     {
         private readonly ITokenExchangeProviderStore _tokenExchangeProviderStore;
         private readonly HttpClient _client;
@@ -26,10 +23,7 @@ namespace IdentityServer.External.TokenExchange.Providers
         public async Task<JObject> GetUserInfoAsync(string accessToken)
         {
             var provider = await _tokenExchangeProviderStore.GetProviderByNameAsync(TokenExchangeProviders.Facebook);
-            if (provider == null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
+            ExternalTokenExchangeProviderHelper.CheckNotNull(provider);
 
             var request = new Dictionary<string, string>
             {
@@ -44,9 +38,5 @@ namespace IdentityServer.External.TokenExchange.Providers
             }
             return null;
         }
-
-      
     }
-
-   
 }

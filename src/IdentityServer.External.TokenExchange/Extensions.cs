@@ -82,7 +82,7 @@ namespace IdentityServer.External.TokenExchange
                 }
 
                 if (authProviderType == null)
-                    throw new Exception("Provider not found");
+                    throw new NotImplementedException("Provider not found");
 
                 return (IExternalTokenProvider)serviceProvider.GetService(authProviderType);
             });

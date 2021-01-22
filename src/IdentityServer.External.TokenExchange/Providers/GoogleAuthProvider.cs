@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using IdentityServer.External.TokenExchange.Config;
 using IdentityServer.External.TokenExchange.Helpers;
@@ -23,10 +21,7 @@ namespace IdentityServer.External.TokenExchange.Providers
         {
 
             var provider = await _tokenExchangeProviderStore.GetProviderByNameAsync(TokenExchangeProviders.Google);
-            if (provider == null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
+            ExternalTokenExchangeProviderHelper.CheckNotNull(provider);
             var request = new Dictionary<string, string>();
             request.Add("token", accessToken);
 

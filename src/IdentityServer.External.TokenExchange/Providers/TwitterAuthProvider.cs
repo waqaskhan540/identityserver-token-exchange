@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using IdentityServer.External.TokenExchange.Config;
 using IdentityServer.External.TokenExchange.Helpers;
@@ -23,10 +21,7 @@ namespace IdentityServer.External.TokenExchange.Providers
         public async Task<JObject> GetUserInfoAsync(string accessToken)
         {
             var provider = await _tokenExchangeProviderStore.GetProviderByNameAsync(TokenExchangeProviders.Twitter);
-            if (provider == null)
-            {
-                throw new ArgumentNullException(nameof(provider));
-            }
+            ExternalTokenExchangeProviderHelper.CheckNotNull(provider);
 
             var request = new Dictionary<string, string>();
             request.Add("tokenString", accessToken);
